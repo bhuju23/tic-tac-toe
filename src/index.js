@@ -54,33 +54,9 @@ const buttonStyle = {
 let arr = new Array(9);
 console.log(arr, 'test');
 
-const Square = ({current, game, setCurrent, setGame, num, setWinner, winner})=>{
+const Square = ({current, game, setCurrent, setGame, num, winner})=>{
 
-  useEffect(() => {
-    var a1 = [game[0], game[1], game[2]];
-    var a2 = [game[0], game[3], game[6]];
-    var a3 = [game[0], game[4], game[8]];
-    var a4 = [game[3], game[4], game[5]];
-    var a5 = [game[6], game[7], game[8]];
-    var a6 = [game[1], game[4], game[7]];
-    var a7 = [game[2], game[5], game[8]];
-    var a8 = [game[2], game[4], game[6]];
-    var items = [a1, a2, a3, a4, a5, a6, a7, a8];
-    var x = ['x','x','x'];
-    var o = ['o', 'o', 'o'];
-
-    items.forEach((item)=>{
-      if(JSON.stringify(item) === JSON.stringify(x)){
-        setWinner('x');
-      }
-
-      else if(JSON.stringify(item) === JSON.stringify(o)){
-        setWinner('o');
-      }
-    });
-
-
-  }, [game, setWinner]);
+ 
 
   const handleClick = ()=>{
     var a = [...game];
@@ -92,24 +68,14 @@ const Square = ({current, game, setCurrent, setGame, num, setWinner, winner})=>{
     else{
      a.splice(num, 1, current);
      setGame(a);
-     console.log(a, 'a');
- 
-    
-
+     
       if (current==='x'){
         setCurrent('o');
       }
       else if(current==='o'){
         setCurrent('x');
     }
-
-    
-    console.log([a[0] ,a[1], a[2]], 'array');
-
-
   }
-
-
   }
 
   const handleNothing = ()=>{
@@ -148,21 +114,21 @@ const Board = ({game, setGame, current, setCurrent, winner, setWinner })=>{
         <div style={boardStyle}>
 
           <div className="board-row" style={rowStyle}>
-            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={0} winner ={winner} setWinner={setWinner}/>
-            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={1} winner ={winner} setWinner={setWinner}/>
-            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={2} winner ={winner} setWinner={setWinner}/>
+            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={0} winner ={winner} />
+            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={1} winner ={winner} />
+            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={2} winner ={winner} />
           </div>
 
           <div className="board-row" style={rowStyle}>
-            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={3} winner ={winner} setWinner={setWinner}/>
-            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={4} winner ={winner} setWinner={setWinner}/>
-            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={5} winner ={winner} setWinner={setWinner}/>
+            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={3} winner ={winner} />
+            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={4} winner ={winner} />
+            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={5} winner ={winner} />
           </div>
 
           <div className="board-row" style={rowStyle}>
-            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={6} winner ={winner} setWinner={setWinner}/>
-            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={7} winner ={winner} setWinner={setWinner}/>
-            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={8} winner ={winner} setWinner={setWinner}/>
+            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={6} winner ={winner} />
+            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={7} winner ={winner} />
+            <Square game ={game} setGame={setGame} current={current} setCurrent={setCurrent} num={8} winner ={winner} />
           
           </div>
         </div>
@@ -176,7 +142,31 @@ const Game = ()=> {
   const [winner, setWinner] = useState('none');
   const[current, setCurrent] = useState('x');
 
+  useEffect(() => {
+    var a1 = [game[0], game[1], game[2]];
+    var a2 = [game[0], game[3], game[6]];
+    var a3 = [game[0], game[4], game[8]];
+    var a4 = [game[3], game[4], game[5]];
+    var a5 = [game[6], game[7], game[8]];
+    var a6 = [game[1], game[4], game[7]];
+    var a7 = [game[2], game[5], game[8]];
+    var a8 = [game[2], game[4], game[6]];
+    var items = [a1, a2, a3, a4, a5, a6, a7, a8];
+    var x = ['x','x','x'];
+    var o = ['o', 'o', 'o'];
 
+    items.forEach((item)=>{
+      if(JSON.stringify(item) === JSON.stringify(x)){
+        setWinner('x');
+      }
+
+      else if(JSON.stringify(item) === JSON.stringify(o)){
+        setWinner('o');
+      }
+    });
+
+
+  }, [game, setWinner]);
   
     return (
       <div className="game">
